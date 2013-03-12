@@ -1,0 +1,20 @@
+name: smtp
+version: 0.1.3
+description:
+        SMTP client library
+licence: GPL2
+authors: Robert Silve
+obuild-ver: 1
+
+library smtp
+        modules: Smtp, Mail
+        src-dir: src
+        build-deps: str
+
+test test
+     path: test
+     mainis: test.ml
+
+test test_smtp
+     path: test
+     mainis: test_smtp.ml
