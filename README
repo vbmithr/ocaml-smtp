@@ -1,3 +1,5 @@
 SMTP lib for OCaml
+==================
 
-See http://www.linux-nantes.org/~fmonnier/OCaml/smtp-mail/
+* Rewritten from scratch.
+* Functorized, Unix and Lwt backends.

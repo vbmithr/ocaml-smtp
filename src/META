@@ -1,7 +1,0 @@
-version = "0.1.3"
-description = "SMTP client lib"
-archive(byte) = "smtp.cma"
-archive(byte, plugin) = "smtp.cma"
-archive(native) = "smtp.cmxa"
-archive(native, plugin) = "smtp.cmxs"
-exists_if = "smtp.cma"

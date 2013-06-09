@@ -1,0 +1,29 @@
+version = "0.1"
+description = "SMTP client library"
+archive(byte) = "smtp.cma"
+archive(byte, plugin) = "smtp.cma"
+archive(native) = "smtp.cmxa"
+archive(native, plugin) = "smtp.cmxs"
+exists_if = "smtp.cma"
+
+package "unix" (
+ version = "0.1"
+ description = "SMTP client library for Unix"
+ requires = "smtp unix"
+ archive(byte) = "smtp_unix.cma"
+ archive(byte, plugin) = "smtp_unix.cma"
+ archive(native) = "smtp_unix.cmxa"
+ archive(native, plugin) = "smtp_unix.cmxs"
+ exists_if = "smtp_unix.cma"
+)
+
+package "lwt" (
+ version = "0.1"
+ description = "SMTP client library for Unix"
+ requires = "smtp lwt lwt.unix"
+ archive(byte) = "smtp_lwt.cma"
+ archive(byte, plugin) = "smtp_lwt.cma"
+ archive(native) = "smtp_lwt.cmxa"
+ archive(native, plugin) = "smtp_lwt.cmxs"
+ exists_if = "smtp_lwt.cma"
+)
