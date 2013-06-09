@@ -6,7 +6,7 @@ dist/setup:
 build: dist/setup
 	obuild build
 
-install: build
+install: build uninstall
 	ocamlfind install smtp dist/build/lib-smtp/* dist/build/lib-smtp_unix/* dist/build/lib-smtp_lwt/* lib/META
 
 uninstall:
