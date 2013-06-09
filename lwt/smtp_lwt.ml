@@ -1,4 +1,6 @@
-module IO : Smtp.IO = struct
+module IO : Smtp.IO
+	with type 'a t = 'a Lwt.t =
+struct
   type 'a t = 'a Lwt.t
   let return = Lwt.return
   let bind = Lwt.bind
@@ -20,4 +22,6 @@ module IO : Smtp.IO = struct
 end
 
 module Smtp = Smtp.Make (IO)
+(* module Smtp = Smtp.Make (IO with type 'a t = 'a Lwt.t) *)
+(* module Smtp = Smtp.Make ( (IO : Smtp.IO with type 'a t = 'a Lwt.t) ) *)
 include Smtp
