@@ -1,4 +1,4 @@
-module IO : Smtp.IO = struct
+module IO = struct
   type 'a t = 'a
   let return v = v
   let bind v f = f v

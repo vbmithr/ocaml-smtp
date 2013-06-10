@@ -95,8 +95,8 @@ module Make (IO : IO) = struct
 
   let finally f g =
     try
-      let ret = f () in g (); ret
-    with exn -> g (); IO.fail exn
+      f () >>= fun ret -> g () >>= fun () -> IO.return ret
+    with exn -> g () >>= fun () -> IO.fail exn
 
   let sendmail ?(host="") ?(port="smtp") ~name ~from ~to_ ~body () =
     connect ~host ~port ~name () >>= fun h ->

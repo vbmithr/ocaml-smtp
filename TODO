@@ -1,2 +1,1 @@
-* Fix Lwt type unification bug (that renders it unusable)
 * Async backend ?
