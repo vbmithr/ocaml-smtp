@@ -1,7 +1,10 @@
+UNIX ?= $(shell if ocamlfind query unix >/dev/null 2>&1; then echo --flag unix; fi)
+LWT ?= $(shell if ocamlfind query lwt.unix >/dev/null 2>&1; then echo --flag lwt; fi)
+
 all: build
 
 dist/setup:
-	obuild configure
+	obuild configure $(UNIX) $(LWT)
 
 build: dist/setup
 	obuild build
