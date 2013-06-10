@@ -9,11 +9,15 @@ dist/setup:
 build: dist/setup
 	obuild build
 
-install: build uninstall
+install: build
 	ocamlfind install smtp dist/build/lib-smtp/* dist/build/lib-smtp_unix/* dist/build/lib-smtp_lwt/* lib/META
 
 uninstall:
 	ocamlfind remove smtp
+
+reinstall:
+	$(MAKE) uninstall || true
+	$(MAKE) install
 
 PHONY: clean
 
