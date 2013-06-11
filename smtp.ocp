@@ -1,0 +1,28 @@
+begin library "smtp"
+      dirname = "lib"
+      files = [ "smtp.ml" ]
+end
+
+begin library "smtp.lwt"
+      dirname = "lwt"
+      files = [ "smtp_lwt.ml" ]
+      requires = [ "smtp" "lwt" "lwt.unix"]
+end
+
+begin library "smtp.unix"
+      dirname = "unix"
+      files = [ "smtp_unix.ml" ]
+      requires = [ "smtp" "unix" ]
+end
+
+begin test "test_unix"
+      dirname = "test"
+      files = [ "test_unix.ml" ]
+      requires = [ "smtp.unix" "unix" ]
+end
+
+begin test "test_lwt"
+      dirname = "test"
+      files = [ "test_lwt.ml" ]
+      requires = [ "smtp.lwt" "unix" ]
+end
