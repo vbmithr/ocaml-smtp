@@ -1,3 +1,9 @@
+version = "0.1"
+authors = ["Vincent Bernardoff <vb@luminar.eu.org>"]
+license = "ISC"
+description = "SMTP library for OCaml"
+
+
 begin library "smtp"
       dirname = "lib"
       files = [ "smtp.ml" ]
