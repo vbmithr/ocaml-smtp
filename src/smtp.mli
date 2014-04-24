@@ -1,13 +1,12 @@
 module type IO = sig
 
   (** Monadic interface *)
-
   type 'a t
   val return : 'a -> 'a t
   val bind : 'a t -> ('a -> 'b t) -> 'b t
   val fail : exn -> 'a t
-  (** Channel like communication *)
 
+  (** Channel like communication *)
   type ic
   type oc
 
@@ -18,7 +17,8 @@ module type IO = sig
   val print_line : oc -> string -> unit t
 end
 
-module Make (IO : IO) : sig
+module type S = sig
+  type 'a monad
 
   type handle
   (** Type of a handle to a SMTP connection. *)
@@ -52,27 +52,29 @@ module Make (IO : IO) : sig
   (** Exception raised when the remote SMTP server returns a negative
       reply. *)
 
-  val connect : ?host:string -> ?port:string -> name:string -> unit -> handle IO.t
+  val connect : ?host:string -> ?port:string -> name:string -> unit -> handle monad
   (** [open ~host ~port] is a promise of a handle to an open
       connection to the SMTP server located at [host:port]. *)
 
-  val close : handle -> unit IO.t
+  val close : handle -> unit monad
   (** [close h] closes [h], cleanly exiting the connection to the SMTP
       server if needed. *)
 
-  val request : handle -> request -> response IO.t
+  val request : handle -> request -> response monad
   (** [request h req] sends [req] to the SMTP server handled by
       [h]. *)
 
   val send : handle -> from:Addr.t -> to_:Addr.t list -> body:string
-    -> response IO.t
+    -> response monad
   (** [send h ~from ~to_ ~body] use the SMTP handled by [h] to send a
       mail of body [~body] from address [~from] to addresses
       [~to_]. *)
 
   val sendmail : ?host:string -> ?port:string -> name:string -> from:Addr.t
-    -> to_:Addr.t list -> body:string -> unit -> response IO.t
+    -> to_:Addr.t list -> body:string -> unit -> response monad
   (** [sendmail ~host ~port ~from ~to_ ~body] sends the mail of body
       [~body] from address [~from] to addresses [~to] using the SMTP
       server at address [host:port]. *)
 end
+
+module Make (IO : IO) : S with type 'a monad = 'a IO.t

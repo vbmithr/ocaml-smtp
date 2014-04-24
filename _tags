@@ -1,0 +1,7 @@
+<**/*.{ml,mli}> : bin_annot
+<src> : include
+<test> : include
+<src/smtp_lwt.{ml,mli}> : package(lwt)
+<src/smtp_unix.{ml}> : use_unix
+<test/test_lwt.{ml,native,byte}> : package(lwt.unix)
+<test/test_unix.{ml,native,byte}> : use_unix

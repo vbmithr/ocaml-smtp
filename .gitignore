@@ -1,3 +1,4 @@
-dist
-_obuild
-ocp-build.*
+_build
+*.install
+*.native
+*.byte
