@@ -7,10 +7,9 @@ depends: ["ocamlfind"]
 depopts: ["lwt"]
 build:
 [
-  [ "ocaml" "pkg/git.ml" ]
   [ "ocaml" "pkg/build.ml" "native=%{ocaml-native}%"
                            "native-dynlink=%{ocaml-native}%"
-			   "unix=%{base-unix:installed}%"
-			   "lwt=%{lwt:installed}%"
-			   ] # TODO FIXME
+                           "unix=%{base-unix:installed}%"
+                           "lwt=%{lwt:installed}%"
+  ]
 ]
