@@ -1,12 +1,17 @@
-PREFIX=/usr/local
+PKG=smtp
+PREFIX=`opam config var prefix`
+BUILDOPTS=native=true native-dynlink=true unix=true lwt=true
 
 all: build
 
 build:
-	ocaml pkg/build.ml native=true native-dynlink=true unix=true lwt=true
+	ocaml pkg/build.ml $(BUILDOPTS)
 
 install: build
-	opam-installer --prefix=$(PREFIX) *.install
+	opam-installer --prefix=$(PREFIX) $(PKG).install
+
+uninstall: $(PKG).install
+	opam-installer -u --prefix=$(PREFIX) $(PKG).install
 
 PHONY: clean
 
