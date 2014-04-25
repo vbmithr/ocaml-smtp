@@ -19,8 +19,8 @@ package "unix" (
 
 package "lwt" (
  version = "0.2"
- description = "SMTP client library for Unix"
- requires = "smtp lwt lwt.unix"
+ description = "SMTP client library for Lwt"
+ requires = "smtp lwt.unix"
  archive(byte) = "smtp_lwt.cma"
  archive(byte, plugin) = "smtp_lwt.cma"
  archive(native) = "smtp_lwt.cmxa"
