@@ -11,7 +11,7 @@ module IO = struct
   let open_connection ~host ~service =
     Lwt_unix.getaddrinfo host service [] >>= function
     | [] -> fail (Failure ("IP resolution failed for " ^ host))
-    | h::t -> Lwt_io.open_connection ~buffer_size:4096 h.Lwt_unix.ai_addr
+    | h::t -> Lwt_io.open_connection h.Lwt_unix.ai_addr
 
   let shutdown_connection = Lwt_io.close
 
